@@ -1,0 +1,1 @@
+# skype-bot-for-hackason
