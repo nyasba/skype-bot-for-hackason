@@ -1,6 +1,7 @@
 package jp.co.gxp.bot.skype.repository.skype;
 
 import jp.co.gxp.bot.skype.domain.base.SkypeApiException;
+import jp.co.gxp.bot.skype.domain.skype.SkypeBotApiAccessToken;
 import jp.co.gxp.bot.skype.domain.skype.SkypeMessage;
 import jp.co.gxp.bot.skype.domain.skype.SkypeRoom;
 import org.slf4j.Logger;

@@ -1,4 +1,4 @@
-package jp.co.gxp.bot.skype.repository.skype;
+package jp.co.gxp.bot.skype.domain.skype;
 
 /**
  * BotFrameworkのアクセストークン

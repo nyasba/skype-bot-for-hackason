@@ -2,6 +2,7 @@ package jp.co.gxp.bot.skype.repository.skype;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jp.co.gxp.bot.skype.domain.skype.SkypeBotApiAccessToken;
 
 /**
  * MicrosoftBotFrameworkのAuthEndpointのレスポンス
