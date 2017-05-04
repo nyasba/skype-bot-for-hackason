@@ -1,0 +1,8 @@
+logging:
+    file: logs/application.log
+    level:
+        root: INFO
+        org.springframework.web: INFO
+        org.springframework.web.client: DEBUG
+        org.springframework.http: DEBUG
+        jp.co.gxp.bot.skype: DEBUG
