@@ -36,7 +36,7 @@ public class SampleContoller {
      * curl -X POST -v \
      * -H "Accept: application/json" \
      * -H "Content-Type: application/json" \
-     * -d "{ \"roomName\" : \"test\", \"message\" : \"hello from controller\" }" \
+     * -d "{ \"room\" : \"test\", \"message\" : \"hello from controller\" }" \
      * http://localhost:8080/message
      * </pre>
      *
