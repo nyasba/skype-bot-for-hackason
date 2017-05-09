@@ -1,4 +1,4 @@
-package jp.co.gxp.bot.skype.controller.request;
+package jp.co.gxp.bot.skype.controller.api.user.request;
 
 import jp.co.gxp.bot.skype.domain.skype.SkypeMessage;
 import jp.co.gxp.bot.skype.domain.skype.SkypeRoom;

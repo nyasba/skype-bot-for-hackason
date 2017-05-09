@@ -1,6 +1,6 @@
-package jp.co.gxp.bot.skype.controller;
+package jp.co.gxp.bot.skype.controller.api.user;
 
-import jp.co.gxp.bot.skype.controller.request.SampleControllerRequest;
+import jp.co.gxp.bot.skype.controller.api.user.request.SampleControllerRequest;
 import jp.co.gxp.bot.skype.service.SkypeMessagePostService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
