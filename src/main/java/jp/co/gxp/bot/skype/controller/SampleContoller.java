@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -60,5 +61,11 @@ public class SampleContoller {
         );
         
         return ResponseEntity.ok().build();
+    }
+    
+    // curl -s http://localhost:8080/healthcheck でOKが返ってくる（本来はactuator使うべき）
+    @GetMapping("/healthcheck")
+    public ResponseEntity<?> get() {
+        return ResponseEntity.ok("OK");
     }
 }
