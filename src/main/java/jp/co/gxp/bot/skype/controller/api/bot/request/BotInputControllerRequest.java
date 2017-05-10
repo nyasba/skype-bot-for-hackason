@@ -55,7 +55,7 @@ public class BotInputControllerRequest {
         if (!headers.containsKey("Authorization")) {
             return null;
         }
-        return body.get("Authorization").toString()
+        return headers.get("Authorization").toString()
                 .replace("Bearer ", "");
     }
     
