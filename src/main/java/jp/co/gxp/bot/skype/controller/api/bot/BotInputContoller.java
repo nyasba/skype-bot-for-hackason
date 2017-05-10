@@ -41,8 +41,9 @@ public class BotInputContoller {
             return ResponseEntity.accepted().build();
         }
     
-        logger.info("input1:" + request.toString());
-        logger.info("input2:" + request.getMessage().getValue() + "|" + request.getRoom().getId());
+        logger.info("message:" + request.getMessage().getValue());
+        logger.info("room:" + request.getRoom().getId());
+        logger.info("token:" + request.getToken().getValue());
         
         return ResponseEntity.accepted().build();
     }
