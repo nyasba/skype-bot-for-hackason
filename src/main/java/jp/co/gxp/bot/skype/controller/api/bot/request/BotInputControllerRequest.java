@@ -3,25 +3,30 @@ package jp.co.gxp.bot.skype.controller.api.bot.request;
 import jp.co.gxp.bot.skype.domain.skype.SkypeMessage;
 import org.hibernate.validator.constraints.NotBlank;
 
+import java.util.Map;
+
 /**
  * BotInputControllerのリクエスト
  */
 public class BotInputControllerRequest {
     
-    private String type;
-    private String id;
-    private String timestamp;
-    private String serviceUrl;
-    private String channelId;
+    private Map<String, String> body;
+    private Map<String, String> headers;
     
     @NotBlank
-    private String text;
-    
-    public SkypeMessage getMessage() {
-        return new SkypeMessage(text);
+    public String getText() {
+        return body.get("text");
     }
     
-    public void setMessage(String text) {
-        this.text = text;
+    public SkypeMessage getMessage() {
+        return new SkypeMessage(getText());
+    }
+    
+    public void setBody(Map<String, String> body) {
+        this.body = body;
+    }
+    
+    public void setHeaders(Map<String, String> headers) {
+        this.headers = headers;
     }
 }
