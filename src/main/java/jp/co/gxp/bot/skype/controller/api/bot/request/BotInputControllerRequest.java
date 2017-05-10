@@ -29,4 +29,12 @@ public class BotInputControllerRequest {
     public void setHeaders(Map<String, String> headers) {
         this.headers = headers;
     }
+    
+    @Override
+    public String toString() {
+        return "BotInputControllerRequest{" +
+                "body=" + body +
+                ", headers=" + headers +
+                '}';
+    }
 }
