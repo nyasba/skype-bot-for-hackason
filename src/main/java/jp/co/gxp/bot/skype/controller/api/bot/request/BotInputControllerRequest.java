@@ -1,7 +1,6 @@
 package jp.co.gxp.bot.skype.controller.api.bot.request;
 
 import jp.co.gxp.bot.skype.domain.skype.SkypeMessage;
-import org.hibernate.validator.constraints.NotBlank;
 
 import java.util.Map;
 
@@ -13,7 +12,7 @@ public class BotInputControllerRequest {
     private Map<String, Object> body;
     private Map<String, Object> headers;
     
-    @NotBlank
+    //    @NotBlank
     public String getText() {
         return body.get("text").toString();
     }
