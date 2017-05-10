@@ -10,23 +10,23 @@ import java.util.Map;
  */
 public class BotInputControllerRequest {
     
-    private Map<String, String> body;
-    private Map<String, String> headers;
+    private Map<String, Object> body;
+    private Map<String, Object> headers;
     
     @NotBlank
     public String getText() {
-        return body.get("text");
+        return body.get("text").toString();
     }
     
     public SkypeMessage getMessage() {
         return new SkypeMessage(getText());
     }
     
-    public void setBody(Map<String, String> body) {
+    public void setBody(Map<String, Object> body) {
         this.body = body;
     }
     
-    public void setHeaders(Map<String, String> headers) {
+    public void setHeaders(Map<String, Object> headers) {
         this.headers = headers;
     }
     
