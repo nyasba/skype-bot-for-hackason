@@ -1,9 +1,5 @@
 package jp.co.gxp.bot.skype.repository.skype;
 
-import jp.co.gxp.bot.skype.domain.base.SkypeApiException;
-import jp.co.gxp.bot.skype.domain.skype.SkypeBotApiAccessToken;
-import jp.co.gxp.bot.skype.domain.skype.SkypeMessage;
-import jp.co.gxp.bot.skype.domain.skype.SkypeRoomDefined;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -20,17 +16,23 @@ import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestOperations;
 
+import jp.co.gxp.bot.skype.domain.base.SkypeApiException;
+import jp.co.gxp.bot.skype.domain.skype.SkypeBotApiAccessToken;
+import jp.co.gxp.bot.skype.domain.skype.SkypeMessage;
+import jp.co.gxp.bot.skype.domain.skype.SkypeRoomDefined;
+import jp.co.gxp.bot.skype.domain.skype.SkypeRoomUndefined;
+
 @Repository
 public class SkypeBotApiRepository implements SkypeBotRepository {
-    
+
     private static Logger logger = LoggerFactory.getLogger(SkypeBotRepository.class);
-    
+
     private final RestOperations restOperations;
-    
+
     public SkypeBotApiRepository(RestTemplateBuilder restTemplateBuilder) {
         this.restOperations = restTemplateBuilder.build();
     }
-    
+
     /**
      * BotFrameworkのアクセストークンを取得する
      * <p>
@@ -59,17 +61,17 @@ public class SkypeBotApiRepository implements SkypeBotRepository {
     public SkypeBotApiAccessToken auth() {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
-        
+
         MultiValueMap<String, String> data = new LinkedMultiValueMap<>();
         data.add("grant_type", "client_credentials");
         data.add("client_id", System.getenv("skype_client_id"));
         data.add("client_secret", System.getenv("skype_client_secret"));
         data.add("scope", "https://graph.microsoft.com/.default");
-        
+
         HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<>(data, headers);
-        
+
         String url = "https://login.microsoftonline.com/common/oauth2/v2.0/token";
-        
+
         try {
             ResponseEntity<SkypeBotApiAuthResponse> response = restOperations.postForEntity(url, request, SkypeBotApiAuthResponse.class);
             logger.info("auth result : " + response.getStatusCode().toString());
@@ -81,7 +83,7 @@ public class SkypeBotApiRepository implements SkypeBotRepository {
             throw new SkypeApiException("auth is failed : " + e.getMessage());
         }
     }
-    
+
     /**
      * Skypeへメッセージを投稿する
      * <p>
@@ -104,16 +106,16 @@ public class SkypeBotApiRepository implements SkypeBotRepository {
      */
     @Override
     public void postMessage(SkypeBotApiAccessToken accessToken, SkypeRoomDefined room, SkypeMessage message) {
-        
+
         HttpHeaders headers = new HttpHeaders();
         headers.set("Authorization", "Bearer " + accessToken.getValue());
         headers.setContentType(MediaType.APPLICATION_JSON);
-        
+
         SkypeBotApiPostRequest json = new SkypeBotApiPostRequest(message);
         HttpEntity<SkypeBotApiPostRequest> request = new HttpEntity<>(json, headers);
-        
+
         String url = "https://api.skype.net/v3/conversations/{room_id}/activities/";
-        
+
         try {
             ResponseEntity<String> response = restOperations.postForEntity(url, request, String.class, room.getId());
             logger.info("post message result : " + response.getStatusCode().toString());
@@ -129,4 +131,32 @@ public class SkypeBotApiRepository implements SkypeBotRepository {
             throw new SkypeApiException("post message is failed :" + e.getMessage());
         }
     }
+
+	@Override
+	public void postMessage(SkypeBotApiAccessToken accessToken, SkypeRoomUndefined room, SkypeMessage message) {
+		// TODO 自動生成されたメソッド・スタブ
+		HttpHeaders headers = new HttpHeaders();
+        headers.set("Authorization", "Bearer " + accessToken.getValue());
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        SkypeBotApiPostRequest json = new SkypeBotApiPostRequest(message);
+        HttpEntity<SkypeBotApiPostRequest> request = new HttpEntity<>(json, headers);
+
+        String url = "https://api.skype.net/v3/conversations/{room_id}/activities/";
+
+        try {
+            ResponseEntity<String> response = restOperations.postForEntity(url, request, String.class, room.getId());
+            logger.info("post message result : " + response.getStatusCode().toString());
+            logger.debug("header : " + response.getHeaders().toString());
+            logger.debug("body : " + response.getBody());
+        } catch (HttpClientErrorException e) {
+            logger.error("post message is failed by : " + e.getMessage());
+            logger.error("header : " + e.getResponseHeaders().toString());
+            logger.error("body : " + e.getResponseBodyAsString());
+            throw new SkypeApiException("post message is failed :" + e.getMessage());
+        } catch (RestClientException e) {
+            logger.error(e.toString());
+            throw new SkypeApiException("post message is failed :" + e.getMessage());
+        }
+	}
 }
