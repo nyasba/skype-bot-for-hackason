@@ -25,7 +25,10 @@ public class BotWorkService {
 		StringBuffer sb = new StringBuffer(message.getValue());
 		String newMessage = sb.reverse().toString();
 
-		this.postMessage(token, room, new SkypeMessage(newMessage));
+		// トークン生成
+		SkypeBotApiAccessToken accessToken = skypeBotRepository.auth();
+
+		this.postMessage(accessToken, room, new SkypeMessage(newMessage));
 	}
 
 }
