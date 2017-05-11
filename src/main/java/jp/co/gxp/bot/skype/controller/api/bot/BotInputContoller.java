@@ -40,8 +40,10 @@ public class BotInputContoller {
             errorList.forEach(e -> logger.error("validation error : " + e));
             return ResponseEntity.accepted().build();
         }
-        
-        logger.info("input:" + request.toString());
+    
+        logger.info("message:" + request.getMessage().getValue());
+        logger.info("room:" + request.getRoom().getId());
+        logger.info("token:" + request.getToken().getValue());
         
         return ResponseEntity.accepted().build();
     }

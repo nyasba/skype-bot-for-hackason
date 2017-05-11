@@ -2,7 +2,7 @@ package jp.co.gxp.bot.skype.repository.skype;
 
 import jp.co.gxp.bot.skype.domain.skype.SkypeBotApiAccessToken;
 import jp.co.gxp.bot.skype.domain.skype.SkypeMessage;
-import jp.co.gxp.bot.skype.domain.skype.SkypeRoom;
+import jp.co.gxp.bot.skype.domain.skype.SkypeRoomDefined;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,7 +22,7 @@ public class SkypeBotApiRepositoryTest {
         SkypeMessage message = new SkypeMessage("hello, bot");
         
         SkypeBotApiAccessToken accessToken = skypeBotRepository.auth();
-        skypeBotRepository.postMessage(accessToken, SkypeRoom.TEST, message);
+        skypeBotRepository.postMessage(accessToken, SkypeRoomDefined.TEST, message);
     }
     
 }
