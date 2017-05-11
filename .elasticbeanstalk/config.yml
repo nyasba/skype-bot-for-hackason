@@ -1,0 +1,19 @@
+branch-defaults:
+  default:
+    environment: develop
+    group_suffix: null
+deploy:
+  artifact: ./target/sample-0.0.1-SNAPSHOT.jar
+global:
+  application_name: newbie-bot
+  branch: null
+  default_ec2_keyname: newbie-key
+  default_platform: Java 8
+  default_region: ap-northeast-1
+  instance_profile: null
+  platform_name: null
+  platform_version: null
+  profile: null
+  repository: null
+  sc: null
+  workspace_type: Application

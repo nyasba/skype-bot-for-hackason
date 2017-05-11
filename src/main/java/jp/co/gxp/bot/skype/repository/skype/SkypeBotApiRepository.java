@@ -3,7 +3,7 @@ package jp.co.gxp.bot.skype.repository.skype;
 import jp.co.gxp.bot.skype.domain.base.SkypeApiException;
 import jp.co.gxp.bot.skype.domain.skype.SkypeBotApiAccessToken;
 import jp.co.gxp.bot.skype.domain.skype.SkypeMessage;
-import jp.co.gxp.bot.skype.domain.skype.SkypeRoom;
+import jp.co.gxp.bot.skype.domain.skype.SkypeRoomDefined;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -103,7 +103,7 @@ public class SkypeBotApiRepository implements SkypeBotRepository {
      * @param message     メッセージ
      */
     @Override
-    public void postMessage(SkypeBotApiAccessToken accessToken, SkypeRoom room, SkypeMessage message) {
+    public void postMessage(SkypeBotApiAccessToken accessToken, SkypeRoomDefined room, SkypeMessage message) {
         
         HttpHeaders headers = new HttpHeaders();
         headers.set("Authorization", "Bearer " + accessToken.getValue());

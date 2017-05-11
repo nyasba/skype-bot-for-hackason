@@ -1,7 +1,7 @@
 package jp.co.gxp.bot.skype.controller.api.user.request;
 
 import jp.co.gxp.bot.skype.domain.skype.SkypeMessage;
-import jp.co.gxp.bot.skype.domain.skype.SkypeRoom;
+import jp.co.gxp.bot.skype.domain.skype.SkypeRoomDefined;
 import jp.co.gxp.bot.skype.util.validator.EnumString;
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -10,14 +10,14 @@ import org.hibernate.validator.constraints.NotBlank;
  */
 public class SampleControllerRequest {
     
-    @EnumString(enumClass = SkypeRoom.class, required = true)
+    @EnumString(enumClass = SkypeRoomDefined.class, required = true)
     private String room;
     
     @NotBlank
     private String message;
     
-    public SkypeRoom getRoom() {
-        return SkypeRoom.convertFromApiValue(room);
+    public SkypeRoomDefined getRoom() {
+        return SkypeRoomDefined.convertFromApiValue(room);
     }
     
     public void setRoom(String room) {
