@@ -18,7 +18,7 @@ public class BotWorkService {
 	public void makeMessage(SkypeBotApiAccessToken token, SkypeRoomUndefined room, SkypeMessage message) {
 		// トークン生成
 		SkypeBotApiAccessToken accessToken = skypeBotRepository.auth();
-        skypeBotRepository.postMessage(accessToken, room, message.getReverseMessage());
+        skypeBotRepository.postMessage(accessToken, room, message.createReverseMessage());
 	}
 
 }

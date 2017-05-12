@@ -16,7 +16,7 @@ public class SkypeMessagePostService {
     @Autowired
     private SkypeBotRepository skypeBotRepository;
     
-    public void postMessage(SkypeRoom room, SkypeMessage message) {
+    public void postMessage(SkypeRoomDefined room, SkypeMessage message) {
         SkypeBotApiAccessToken accessToken = skypeBotRepository.auth();
         skypeBotRepository.postMessage(accessToken, room, message);
     }

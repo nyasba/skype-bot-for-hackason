@@ -22,8 +22,8 @@ public class SkypeMessage {
      * メッセージを反転した新しいSkypeMessageオブジェクトを戻します
      * @return SkypeMessage
      */
-    public SkypeMessage getReverseMessage() {
-        StringBuffer sb = new StringBuffer(this.getValue());
+    public SkypeMessage createReverseMessage() {
+        StringBuffer sb = new StringBuffer(this.value);
         String reverseString = sb.reverse().toString();
         return new SkypeMessage(reverseString);
     }
