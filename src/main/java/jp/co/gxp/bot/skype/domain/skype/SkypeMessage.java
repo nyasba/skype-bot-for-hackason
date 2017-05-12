@@ -17,4 +17,14 @@ public class SkypeMessage {
     public String getValue() {
         return value;
     }
+
+    /**
+     * メッセージを反転した新しいSkypeMessageオブジェクトを戻します
+     * @return SkypeMessage
+     */
+    public SkypeMessage getReverseMessage() {
+        StringBuffer sb = new StringBuffer(this.getValue());
+        String reverseString = sb.reverse().toString();
+        return new SkypeMessage(reverseString);
+    }
 }

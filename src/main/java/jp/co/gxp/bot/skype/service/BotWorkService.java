@@ -14,21 +14,11 @@ public class BotWorkService {
 	@Autowired
 	private SkypeBotRepository skypeBotRepository;
 
-	private void postMessage(SkypeBotApiAccessToken token, SkypeRoomUndefined room, SkypeMessage message) {
-
-		skypeBotRepository.postMessage(token, room, message);
-	}
 
 	public void makeMessage(SkypeBotApiAccessToken token, SkypeRoomUndefined room, SkypeMessage message) {
-
-		// 文字列を反転させて返すよ
-		StringBuffer sb = new StringBuffer(message.getValue());
-		String newMessage = sb.reverse().toString();
-
 		// トークン生成
 		SkypeBotApiAccessToken accessToken = skypeBotRepository.auth();
-
-		this.postMessage(accessToken, room, new SkypeMessage(newMessage));
+        skypeBotRepository.postMessage(accessToken, room, message.getReverseMessage());
 	}
 
 }
