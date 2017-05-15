@@ -39,8 +39,6 @@ public class AutoBotWorkService {
 
 		CleanUpDuty cleanUpDuty = new CleanUpDuty("A", "B", "C");	// Repositoryから担当者名を取得する
 
-		String place = "130010";     // 位置情報送信 考える
-
 		TomorrowWeather tomorrowWeather = livedoorWeatherApiRepository.getWeather("130010");	// 明日の天気情報取得
 
 		SkypeMessage message = new SkypeMessage("明日の掃除は\r\nAグループ：" + cleanUpDuty.getNameA() + "さん\r\nBグループ：" +

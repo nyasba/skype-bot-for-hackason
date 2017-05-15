@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import jp.co.gxp.bot.skype.domain.cleanUp.CleanUpDuty;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 
@@ -21,9 +23,9 @@ public class CleanStaffRepositoryTest {
 	@Test
 	public void getNameTest() {
 
-		String actual = csr.getName(LocalDate.of(2017, 5, 7));
+		CleanUpDuty actual = csr.getName(LocalDate.of(2017, 5, 7));
 
-		assertThat(actual, is("梶,間瀬,三井"));
+		assertThat(actual, is(new CleanUpDuty("梶","間瀬","三井")));
 
 	}
 }
