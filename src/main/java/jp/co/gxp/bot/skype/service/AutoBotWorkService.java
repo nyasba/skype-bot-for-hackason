@@ -11,12 +11,16 @@ import jp.co.gxp.bot.skype.domain.skype.SkypeMessage;
 import jp.co.gxp.bot.skype.domain.skype.SkypeRoomDefined;
 import jp.co.gxp.bot.skype.domain.weather.TomorrowWeather;
 import jp.co.gxp.bot.skype.repository.skype.SkypeBotRepository;
+import jp.co.gxp.bot.skype.repository.weather.LivedoorWeatherApiRepository;
 
 @Service
 public class AutoBotWorkService {
 
 	@Autowired
 	private SkypeBotRepository skypeBotRepository;
+
+	@Autowired
+	private LivedoorWeatherApiRepository livedoorWeatherApiRepository;
 
 	public void makeNotice(SkypeRoomDefined room) {
 
@@ -37,7 +41,7 @@ public class AutoBotWorkService {
 
 		String place = "130010";     // 位置情報送信 考える
 
-		TomorrowWeather tomorrowWeather = new TomorrowWeather("晴れ");	// 明日の天気情報取得
+		TomorrowWeather tomorrowWeather = livedoorWeatherApiRepository.getWeather("130010");	// 明日の天気情報取得
 
 		SkypeMessage message = new SkypeMessage("明日の掃除は\r\nAグループ：" + cleanUpDuty.getNameA() + "さん\r\nBグループ：" +
 				 cleanUpDuty.getNameB() + "さん\r\nCグループ：" + cleanUpDuty.getNameC() + "さん　です。\r\n明日の天気は「" +
