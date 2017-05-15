@@ -11,11 +11,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import jp.co.gxp.bot.skype.controller.api.bot.request.BotInputControllerRequest;
+import jp.co.gxp.bot.skype.domain.skype.SkypeRoomDefined;
+import jp.co.gxp.bot.skype.service.AutoBotWorkService;
 import jp.co.gxp.bot.skype.service.BotWorkService;
 
 /**
@@ -55,6 +58,9 @@ public class BotInputContoller {
     @Autowired
     private BotWorkService botWorkService;
 
+    @Autowired
+    private AutoBotWorkService autoBotWorkService;
+
 
     @PostMapping("/botwork")
     public void botWork(@Valid @RequestBody BotInputControllerRequest request, Errors errors){
@@ -65,6 +71,19 @@ public class BotInputContoller {
 
     	botWorkService.makeMessage(request.getToken(),
     			request.getRoom(),request.getMessage());
+    }
+
+    @GetMapping("/notice")
+    public void autoBotWork(){
+
+        /*if (errors.hasErrors()) {
+            List<String> errorList = errors.getAllErrors().stream()
+                    .map(ObjectError::toString)
+                    .collect(Collectors.toList());
+            errorList.forEach(e -> logger.error("validation error : " + e));
+        }*/
+
+    	autoBotWorkService.makeNotice(SkypeRoomDefined.TEST);
     }
 
 }

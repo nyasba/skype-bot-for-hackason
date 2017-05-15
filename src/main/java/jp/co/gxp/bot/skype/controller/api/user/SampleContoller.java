@@ -1,7 +1,10 @@
 package jp.co.gxp.bot.skype.controller.api.user;
 
-import jp.co.gxp.bot.skype.controller.api.user.request.SampleControllerRequest;
-import jp.co.gxp.bot.skype.service.SkypeMessagePostService;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import javax.validation.Valid;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,21 +16,20 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.Valid;
-import java.util.List;
-import java.util.stream.Collectors;
+import jp.co.gxp.bot.skype.controller.api.user.request.SampleControllerRequest;
+import jp.co.gxp.bot.skype.service.SkypeMessagePostService;
 
 /**
  * サンプルController
  */
 @RestController
 public class SampleContoller {
-    
+
     private static Logger logger = LoggerFactory.getLogger(SampleContoller.class);
-    
+
     @Autowired
     private SkypeMessagePostService skypeMessagePostService;
-    
+
     /**
      * Skypeへ投稿するための外部からのエンドポイントとなるController
      * <p>
@@ -46,7 +48,7 @@ public class SampleContoller {
      */
     @PostMapping("/message")
     public ResponseEntity<?> post(@Valid @RequestBody SampleControllerRequest request, Errors errors) {
-        
+
         if (errors.hasErrors()) {
             List<String> errorList = errors.getAllErrors().stream()
                     .map(ObjectError::toString)
@@ -54,15 +56,15 @@ public class SampleContoller {
             errorList.forEach(e -> logger.error("validation error : " + e));
             return ResponseEntity.badRequest().body(String.join(",", errorList));
         }
-        
+
         skypeMessagePostService.postMessage(
                 request.getRoom(),
                 request.getMessage()
         );
-        
+
         return ResponseEntity.ok().build();
     }
-    
+
     // curl -s http://localhost:8080/healthcheck でOKが返ってくる（本来はactuator使うべき）
     @GetMapping("/healthcheck")
     public ResponseEntity<?> get() {
