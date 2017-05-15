@@ -1,10 +1,10 @@
 package jp.co.gxp.bot.skype.controller.api.bot;
 
-import jp.co.gxp.bot.skype.controller.api.bot.request.BotInputControllerRequest;
-import jp.co.gxp.bot.skype.domain.skype.SkypeRoomDefined;
-import jp.co.gxp.bot.skype.service.AutoBotWorkService;
-import jp.co.gxp.bot.skype.service.BotWorkService;
-import jp.co.gxp.bot.skype.service.OnichanResponseService;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import javax.validation.Valid;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +16,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.Valid;
-import java.util.List;
-import java.util.stream.Collectors;
+import jp.co.gxp.bot.skype.controller.api.bot.request.BotInputControllerRequest;
+import jp.co.gxp.bot.skype.domain.skype.SkypeRoomDefined;
+import jp.co.gxp.bot.skype.service.AutoBotWorkService;
+import jp.co.gxp.bot.skype.service.BotWorkService;
+import jp.co.gxp.bot.skype.service.OnichanResponseService;
 
 /**
  * BotFrameworkの受け口となるController
@@ -27,7 +29,7 @@ import java.util.stream.Collectors;
 public class BotInputContoller {
 
     private static Logger logger = LoggerFactory.getLogger(BotInputContoller.class);
-    
+
     @Autowired
     private OnichanResponseService onichanResponseService;
 
@@ -53,7 +55,7 @@ public class BotInputContoller {
         logger.info("message:" + request.getMessage().getValue());
         logger.info("room:" + request.getRoom().getId());
         logger.info("token:" + request.getToken().getValue());
-    
+
         // 鬼ちゃん用にする
         onichanResponseService.postMessage(request.getRoom(), request.getMessage()
         );
@@ -89,7 +91,7 @@ public class BotInputContoller {
             errorList.forEach(e -> logger.error("validation error : " + e));
         }*/
 
-    	autoBotWorkService.makeNotice(SkypeRoomDefined.TEST);
+    	autoBotWorkService.makeNotice(SkypeRoomDefined.同期);
     }
 
 }

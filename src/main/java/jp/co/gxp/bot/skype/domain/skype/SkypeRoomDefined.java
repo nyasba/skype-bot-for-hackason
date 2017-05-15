@@ -7,7 +7,8 @@ import jp.co.gxp.bot.skype.util.validator.ApiRequestEnum;
  * idはルームで{@code /get name}を行うことで取得可能
  */
 public enum SkypeRoomDefined implements ApiRequestEnum, SkypeRoom {
-    TEST("test", "19:a2c05af98ed04c33adb92840ff727185@thread.skype"); // FIXME 使うルームIDに修正すること
+    TEST("test", "19:ce48215c328746ef988bb9420f490bbf@thread.skype"), // FIXME 使うルームIDに修正すること
+    同期("synchronization", "19:ce48215c328746ef988bb9420f490bbf@thread.skype"); // 同期のskypeルーム
 
     private String apiValue;
     private String id;
