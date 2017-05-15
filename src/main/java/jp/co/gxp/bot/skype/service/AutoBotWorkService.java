@@ -10,6 +10,7 @@ import jp.co.gxp.bot.skype.domain.skype.SkypeBotApiAccessToken;
 import jp.co.gxp.bot.skype.domain.skype.SkypeMessage;
 import jp.co.gxp.bot.skype.domain.skype.SkypeRoomDefined;
 import jp.co.gxp.bot.skype.domain.weather.TomorrowWeather;
+import jp.co.gxp.bot.skype.repository.skype.CleanStaffRepositoryInpl;
 import jp.co.gxp.bot.skype.repository.skype.SkypeBotRepository;
 import jp.co.gxp.bot.skype.repository.weather.LivedoorWeatherApiRepository;
 
@@ -21,6 +22,9 @@ public class AutoBotWorkService {
 
 	@Autowired
 	private LivedoorWeatherApiRepository livedoorWeatherApiRepository;
+
+	@Autowired
+	private CleanStaffRepositoryInpl cleanStaffRepositoryInpl;
 
 	public void makeNotice(SkypeRoomDefined room) {
 
@@ -37,7 +41,7 @@ public class AutoBotWorkService {
 			date = date.plusDays(1);
 		}
 
-		CleanUpDuty cleanUpDuty = new CleanUpDuty("A", "B", "C");	// Repositoryから担当者名を取得する
+		CleanUpDuty cleanUpDuty = cleanStaffRepositoryInpl.getName(date);	// Repositoryから担当者名を取得する
 
 		TomorrowWeather tomorrowWeather = livedoorWeatherApiRepository.getWeather("130010");	// 明日の天気情報取得
 
