@@ -22,15 +22,15 @@ public class AutoBotWorkService {
 
 		// Dateオブジェクト生成
 		LocalDate date = LocalDate.now();	// 今日の日付を取得する
-		date.plusDays(1);					// 日付を1日進め、明日の日付を取得
+		date = date.plusDays(1);					// 日付を1日進め、明日の日付を取得
 
 		// 取得した日付が休日ではないかチェックする
 		// 休日だった場合、翌週の月曜日に日付を設定する
 		if(date.getDayOfWeek().getValue()==6) {
-			date.plusDays(2);
+			date = date.plusDays(2);
 		}
 		if(date.getDayOfWeek().getValue()==7) {
-			date.plusDays(1);
+			date = date.plusDays(1);
 		}
 
 		CleanUpDuty cleanUpDuty = new CleanUpDuty("A", "B", "C");	// Repositoryから担当者名を取得する
