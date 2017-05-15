@@ -39,9 +39,9 @@ public class AutoBotWorkService {
 
 		TomorrowWeather tomorrowWeather = new TomorrowWeather("晴れ");	// 明日の天気情報取得
 
-		SkypeMessage message = new SkypeMessage("明日の掃除は\r\nAグループ：" + cleanUpDuty.getNameA() + "さん\r\nBグループ：" +
-				 cleanUpDuty.getNameB() + "さん\r\nCグループ：" + cleanUpDuty.getNameC() + "さん　です。\r\n明日の天気は「" +
-				 tomorrowWeather.getValue() + "」です。");
+		SkypeMessage message = new SkypeMessage("明日の掃除は\r\nAグループ：" + cleanUpDuty.getNameA() + "ちゃん\r\nBグループ：" +
+				 cleanUpDuty.getNameB() + "ちゃん\r\nCグループ：" + cleanUpDuty.getNameC() + "ちゃん　っす～！Ψ( ｀▽´ )Ψ\r\n明日の天気は「" +
+				 tomorrowWeather.getValue() + "」っすよ～！Ψ( ｀▽´ )Ψ");
 
 		//SkypeMessage message = new SkypeMessage("test");
 
