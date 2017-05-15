@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.client.RestOperations;
 
+import jp.co.gxp.bot.skype.domain.weather.TomorrowWeather;
 import jp.co.gxp.bot.skype.repository.skype.SkypeBotRepository;
 
 @Repository
@@ -22,7 +23,7 @@ public class LivedoorWeatherApiRepository {
         this.restOperations = restTemplateBuilder.build();
     }
 
-	public String getWeather(String cityCode) {
+	public TomorrowWeather getWeather(String cityCode) {
 
 
 		String urlstr = "http://weather.livedoor.com/forecast/webservice/json/v1";
@@ -39,7 +40,7 @@ public class LivedoorWeatherApiRepository {
 
 			logger.info(response.getBody().getTomorrowWeather());
 
-			return response.getBody().getTomorrowWeather();
+			return new TomorrowWeather(response.getBody().getTomorrowWeather());
 
 		} catch (Exception ex) {
 
@@ -49,6 +50,6 @@ public class LivedoorWeatherApiRepository {
 
 
 		}
-		return "Failed to get the weather.";
+		return new TomorrowWeather("Failed to get the weather.");
 	}
 }
