@@ -11,6 +11,7 @@ import jp.co.gxp.bot.skype.domain.skype.SkypeRoomUndefined;
 public interface SkypeBotRepository {
 
 
+
     SkypeBotApiAccessToken auth();
 
     void postMessage(SkypeBotApiAccessToken accessToken, SkypeRoomDefined room, SkypeMessage message);
