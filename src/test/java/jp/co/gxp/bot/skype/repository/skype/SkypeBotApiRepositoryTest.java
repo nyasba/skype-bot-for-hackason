@@ -1,5 +1,6 @@
 package jp.co.gxp.bot.skype.repository.skype;
 
+import jp.co.gxp.bot.skype.SampleApplication;
 import jp.co.gxp.bot.skype.domain.skype.SkypeBotApiAccessToken;
 import jp.co.gxp.bot.skype.domain.skype.SkypeMessage;
 import jp.co.gxp.bot.skype.domain.skype.SkypeRoomDefined;
@@ -11,7 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
+@SpringBootTest(classes = SampleApplication.class)
 public class SkypeBotApiRepositoryTest {
     @Autowired
     private SkypeBotRepository skypeBotRepository;
